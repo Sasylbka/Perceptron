@@ -32,7 +32,9 @@ public class Main {
         }
     }
     public static void main(String[] args) {
-        int bias=9;
+        int bias=-1;
+        int one=0;
+        int two=0;
         List<String> numbers= new ArrayList<>();
         numbers.add("111101101101111");
         numbers.add("001001001001001");
@@ -58,17 +60,19 @@ public class Main {
         }
 
         Random random = new Random();
-        for(int i =0;i<10000;i++){
+        for(int i =0;i<30000;i++){
             int rand=random.nextInt(10);
             if(rand!=3){
                 if(Proceed(numbers.get(rand),weights,bias)){
                     Decrease(numbers.get(rand),weights);
                 }
+                one++;
             }
             else{
                 if(!Proceed(numbers.get(rand),weights,bias)){
                     Increase(numbers.get(rand),weights);
                 }
+                two++;
             }
         }
         System.out.println(weights);
@@ -90,5 +94,10 @@ public class Main {
         System.out.println("Узнал третьий образ 3? "+Proceed(imagesOfNumbers.get(2),weights,bias));
         System.out.println("Узнал четвертый 3? "+Proceed(imagesOfNumbers.get(3),weights,bias));
         System.out.println("Узнал пятый образ 3? "+Proceed(imagesOfNumbers.get(4),weights,bias));
+        System.out.println(one);
+        System.out.println(two);
     }
 }
+//[0, 0, 0, -5, 0, 2, 2, 2, 0, -2, 0, 2, 2, 2, 0]
+//[1, 1, 0, -4, 0, 2, 1, 1, 0, -4, 0, 3, 1, 1, 0]
+//[0, 0, 0, -6, 0, 1, 1, 2, 0, -6, 0, 3, 1, 1, 0]
